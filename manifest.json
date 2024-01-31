@@ -1,13 +1,16 @@
 {
-    "manifest_version": 3,
-    "name": "LeetCode CN Difficulty Hider",
-    "version": "1.0",
-    "description": "Hide difficulty levels on LeetCode CN",
-    "permissions": ["activeTab", "storage"],
-    "content_scripts": [
-        {
-            "matches": ["https://leetcode-cn.com/*", "https://leetcode.cn/*"],
-            "js": ["content.js"]
-        }
-    ]
+  "manifest_version": 3,
+  "name": "LeetCode CN Difficulty Hider",
+  "version": "1.0",
+  "description": "Hide difficulty levels on LeetCode",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode-cn.com/*",
+        "https://leetcode.cn/*",
+        "https://leetcode.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
 }
