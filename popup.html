@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 280px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: #2c3e50;
+      background: #f8f9fa;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .logo {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: #495057;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      color: #495057;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e9ecef;
+      transition: .3s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #3b82f6;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #6c757d;
+      text-align: center;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #e9ecef;
+    }
+
+    .footer-links {
+      font-size: 10px;
+      margin-top: 8px;
+      color: #adb5bd;
+    }
+
+    .footer-links a {
+      color: #6c757d;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .refresh-notice {
+      background: #fff3cd;
+      color: #856404;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      display: none;  /* 默认隐藏 */
+    }
+
+    .notice-content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #refreshButton {
+      background: #856404;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    #refreshButton:hover {
+      background: #6d5204;
+    }
+  </style>
+</head>
+<body>
+  <div id="refreshNotice" class="refresh-notice">
+    <div class="notice-content">
+      Please refresh the page to activate the extension
+      <button id="refreshButton">Refresh Now</button>
+    </div>
+  </div>
+
+  <div class="header">
+    <img src="icon.png" alt="Logo" class="logo">
+    <h1 class="title">LeetCode Difficulty Hider</h1>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Visibility Settings</div>
+    <div class="toggle-container">
+      <span class="toggle-label">Hide Difficulty Levels</span>
+      <label class="switch">
+        <input type="checkbox" id="difficultyToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-container">
+      <span class="toggle-label">Hide Acceptance Rate</span>
+      <label class="switch">
+        <input type="checkbox" id="acceptanceToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>v1.1.0 | Made with &hearts; by <a href="https://github.com/Charlie059" target="_blank">yuanmomo</a></span>
+    <div class="footer-links">
+      <a href="https://www.flaticon.com/free-icons/code" title="code icons" target="_blank">
+        Icon by Royyan Wijaya - Flaticon
+      </a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

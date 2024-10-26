@@ -3,6 +3,19 @@
   "name": "LeetCode Difficulty Hider",
   "version": "1.0",
   "description": "Hide difficulty levels on LeetCode",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.leetcode.com/*",
+    "*://*.leetcode.cn/*",
+    "*://*.leetcode-cn.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -12,5 +25,8 @@
       ],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
