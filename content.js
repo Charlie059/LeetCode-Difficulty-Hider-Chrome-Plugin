@@ -1,10 +1,9 @@
 let isHidden = true;
 
-// 立即执行的初始化函数
 function initialize() {
   chrome.storage.sync.get(
     {
-      hideDifficulty: true,  // 默认开启
+      hideDifficulty: true, 
       hideAcceptance: false
     }, 
     function(result) {
@@ -18,14 +17,12 @@ function initialize() {
   );
 }
 
-// 确保DOM加载完成后执行
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initialize);
 } else {
-  initialize(); // 如果DOM已经加载完成，立即执行
+  initialize(); 
 }
 
-// 设置MutationObserver来处理动态加载的内容
 const observer = new MutationObserver((mutations) => {
   chrome.storage.sync.get(
     {
@@ -43,7 +40,6 @@ const observer = new MutationObserver((mutations) => {
   );
 });
 
-// 立即开始观察
 observer.observe(document.body, {
   childList: true,
   subtree: true
@@ -71,11 +67,9 @@ function toggleDifficulty(hide) {
 }
 
 function toggleAcceptance(hide) {
-  // 选择包含通过率的元素
   const elements = Array.from(document.querySelectorAll("div[role='cell']"));
   elements.forEach((el) => {
     const text = el.textContent;
-    // 检查文本是否为百分比格式
     if (text && /^\d+\.?\d*%$/.test(text.trim())) {
       el.style.display = hide ? "none" : "";
     }
