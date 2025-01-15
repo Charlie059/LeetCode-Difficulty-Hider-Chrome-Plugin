@@ -59,13 +59,27 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 function toggleDifficulty(hide) {
   const difficulties = ["简单", "中等", "困难", "Easy", "Medium", "Med.", "Hard"];
-  const elements = Array.from(document.querySelectorAll("span, div, p"));
-  
-  elements.forEach((el) => {
-    if (difficulties.some((difficulty) => el.innerText === difficulty)) {
-      el.style.display = hide ? "none" : "";
-    }
-  });
+  const elements = Array
+    .from(document.querySelectorAll("span, div, p"))
+    .filter(el => difficulties.some((difficulty) => el.innerText === difficulty));
+
+  const batchSize = 300;
+  const batches = [];
+  let nextElementIndex = 0;
+
+  while (nextElementIndex < elements.length) {
+    batches.push(elements.slice(nextElementIndex, nextElementIndex + batchSize))
+    nextElementIndex = nextElementIndex + batchSize
+  }
+
+  // Process the elements in batches since some views can have 1000+ elements, which can easily overwhelm the browser
+  batches.forEach((batch, batchIndex) => {
+    setTimeout(() => {
+      batch.forEach(el => {
+        el.style.display = hide ? "none" : ""; 
+      })
+    }, batchIndex * 50);
+  })
 }
 
 function toggleAcceptance(hide) {
