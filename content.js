@@ -56,8 +56,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function toggleDifficulty(hide) {
-  const difficulties = ["简单", "中等", "困难", "Easy", "Medium", "Hard"];
-  const elements = Array.from(document.querySelectorAll("span, div"));
+  const difficulties = ["简单", "中等", "困难", "Easy", "Medium", "Med.", "Hard"];
+  const elements = Array.from(document.querySelectorAll("span, div, p"));
   
   elements.forEach((el) => {
     if (difficulties.some((difficulty) => el.innerText === difficulty)) {
