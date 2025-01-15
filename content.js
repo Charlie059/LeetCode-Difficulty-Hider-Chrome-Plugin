@@ -34,6 +34,7 @@ const observer = new MutationObserver((mutations) => {
         toggleDifficulty(true);
       }
       if (result.hideAcceptance) {
+        toggleAcceptanceOnProblemPage(result.hideAcceptance);
         toggleAcceptance(result.hideAcceptance);
       }
     }
@@ -51,6 +52,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     toggleDifficulty(isHidden);
     chrome.storage.sync.set({ hideDifficulty: isHidden });
   } else if (request.action === 'toggleAcceptance') {
+    toggleAcceptanceOnProblemPage(request.isHidden);
     toggleAcceptance(request.isHidden);
   }
 });
@@ -74,4 +76,25 @@ function toggleAcceptance(hide) {
       el.style.display = hide ? "none" : "";
     }
   });
+}
+
+function toggleAcceptanceOnProblemPage(hide) {
+  if (!window.location.pathname.startsWith('/problems/')) {
+    return
+  }
+  const elements = Array.from(document.querySelectorAll("div"));
+  const acceptanceRateDiv = elements.find(element => element.innerText.toLowerCase() == "acceptance rate")
+
+  if (!acceptanceRateDiv) {
+    console.error('Acceptance rate div not found')
+    return
+  }
+  
+  const containerDiv = acceptanceRateDiv.parentElement?.parentElement;
+  if (!containerDiv) {
+    console.error('Acceptance rate div not found')
+    return 
+  }
+
+  containerDiv.style.display = hide ? "none" : ""
 }
